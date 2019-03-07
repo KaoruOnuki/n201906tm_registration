@@ -1,0 +1,25 @@
+<%= form_with(model: @trademark, local: true) do |form| %>
+  <% if @trademark.errors.any? %>
+  <ul>
+    <% @trademark.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+
+  <div class="trademark_name">
+    <%= form.label "商標名" %>
+    <%= form.text_field :tm_name %>
+  </div>
+
+<div class="trademark_image">
+</div>
+
+  <div class="trademark_description">
+    <%= form.label "商標詳細" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <%= form.submit "登録"%>
+<% end %>

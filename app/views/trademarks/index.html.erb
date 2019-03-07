@@ -1,0 +1,22 @@
+これがユーザーの商標管理画面になる
+<table>
+  <tbody>
+    <tr>
+      <td>商標</td>
+      <td>商標詳細</td>
+    </tr>
+
+    <% @trademarks.each do |trademark| %>
+      <tr>
+        <td><%= trademark.id %></td>
+        <td><%= trademark.tm_name %></td>
+        <td><%= trademark.description %></td>
+        <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
+        <td><%= link_to "削除", trademark_path(trademark.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "+商標を追加する", new_trademark_path %>

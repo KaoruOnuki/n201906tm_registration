@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_100220) do
+ActiveRecord::Schema.define(version: 2019_03_07_103712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "trademarks", force: :cascade do |t|
-    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tm_name", null: false
+    t.string "tm_image"
+    t.text "description", null: false
+    t.text "investigation_result"
+    t.date "investigation_date"
+    t.integer "apply_number"
+    t.date "apply_date"
+    t.text "judge_status"
+    t.integer "registration_number"
+    t.date "registration_date"
+    t.integer "maintenance_period"
   end
 
 end
