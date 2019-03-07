@@ -1,0 +1,33 @@
+<% if @user.errors.any? %>
+  <div class="error_msg">
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="user_name">
+    <%= form.label "お名前" %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div class="user_email">
+    <%= form.label "メールアドレス" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="user_pw">
+    <%= form.label "パスワード（６文字以上）" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="user_pwconfirm">
+    <%= form.label "パスワード確認" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <%= form.submit "アカウント作成"%>
+<% end %>

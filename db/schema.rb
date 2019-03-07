@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_103712) do
+ActiveRecord::Schema.define(version: 2019_03_07_135949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(version: 2019_03_07_103712) do
     t.integer "registration_number"
     t.date "registration_date"
     t.integer "maintenance_period"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "user_name", null: false
+    t.integer "phone_number"
+    t.string "email", null: false
+    t.integer "postal_code"
+    t.string "prefecture"
+    t.string "address1"
+    t.string "address2"
+    t.string "company_name"
+    t.string "website"
+    t.string "contact_method"
+    t.string "contact_time"
+    t.boolean "experienced"
+    t.boolean "agreed_regulation"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
