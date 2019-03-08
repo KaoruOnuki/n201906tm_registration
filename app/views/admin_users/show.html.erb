@@ -2,3 +2,30 @@
 <h1>管理者showページ</h1>
 <%= @admin_user.admin_name %>
 <%= @admin_user.admin_email %>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ユーザー</td>
+      <td>商標ID</td>
+      <td>商標</td>
+      <td>商標詳細</td>
+    </tr>
+
+    <% @all_trademarks.each do |trademark| %>
+      <tr>
+        <td><%= trademark.user.user_name %></td>
+        <td><%= trademark.id %></td>
+        <td><%= trademark.tm_name %></td>
+        <td><%= trademark.description %></td>
+        <% if trademark.state != nil %>
+          <td><%= trademark.state.status_investigation %></td>
+          <td><%= trademark.state.status_apply %></td>
+          <td><%= trademark.state.status_judge %></td>
+          <td><%= trademark.state.status_registration %></td>
+        <% end %>
+        <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

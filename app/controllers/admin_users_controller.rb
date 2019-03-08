@@ -1,5 +1,5 @@
 class AdminUsersController < ApplicationController
-  # before_action :your_page, only:[:show]
+  before_action :your_admin_page, only:[:show]
   def new
     @admin_user = AdminUser.new
   end
@@ -15,6 +15,7 @@ class AdminUsersController < ApplicationController
 
   def show
     @admin_user = AdminUser.find(params[:id])
+    @all_trademarks = Trademark.all
   end
 
   private
@@ -22,9 +23,9 @@ class AdminUsersController < ApplicationController
     params.require(:admin_user).permit(:admin_name, :admin_email, :password, :password_confirmation)
   end
 
-  # def your_page
-  #   unless logged_in?
-  #     redirect_to new_session_path
-  #   end
-  # end
+  def your_admin_page
+    unless logged_in? && session[:admin_user_id].present?
+      redirect_to new_session_path
+    end
+  end
 end

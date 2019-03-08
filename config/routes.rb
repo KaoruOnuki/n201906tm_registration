@@ -10,4 +10,7 @@ Rails.application.routes.draw do
 
   resources :admin_users, only: [:new, :create, :show]
 
+
+  resources :states
+
 end

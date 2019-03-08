@@ -14,6 +14,12 @@
         <td><%= trademark.id %></td>
         <td><%= trademark.tm_name %></td>
         <td><%= trademark.description %></td>
+        <% if trademark.state != nil %>
+          <td><%= trademark.state.status_investigation %></td>
+          <td><%= trademark.state.status_apply %></td>
+          <td><%= trademark.state.status_judge %></td>
+          <td><%= trademark.state.status_registration %></td>
+        <% end %>
         <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
         <td><%= link_to "削除", trademark_path(trademark.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
       </tr>

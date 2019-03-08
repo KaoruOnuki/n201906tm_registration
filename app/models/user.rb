@@ -6,5 +6,5 @@ class User < ApplicationRecord
   before_save { email.downcase! }
   has_secure_password
 
-  has_many :trademarks
+  has_many :trademarks, dependent: :destroy
 end

@@ -1,0 +1,7 @@
+<%= form_with(model: @state, local: true) do |form| %>
+  <label><%= form.radio_button :status_investigation, "true" %> investigation</label>
+  <label><%= form.radio_button :status_apply, "true" %> apply</label>
+  <label><%= form.radio_button :status_judge, "true" %> judge</label>
+  <label><%= form.radio_button :status_registration, "true" %> registration</label>
+  <%= form.submit "登録"%>
+<% end %>

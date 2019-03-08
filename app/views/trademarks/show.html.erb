@@ -1,2 +1,14 @@
 <p>商標名：<%= @trademark.tm_name %></p>
 <p>商標内容：<%= @trademark.description %></p>
+
+<% if session[:admin_user_id].present? %>
+  <% if @trademark.state != nil %>
+    <td><%= @trademark.state.status_investigation %></td>
+    <td><%= @trademark.state.status_apply %></td>
+    <td><%= @trademark.state.status_judge %></td>
+    <td><%= @trademark.state.status_registration %></td>
+    <td><%= link_to "edit", edit_state_path(@trademark.id) %></td>
+  <% else %>
+    <%= link_to "new", new_state_path(@trademark.id) %>
+  <% end %>
+<% end %>
