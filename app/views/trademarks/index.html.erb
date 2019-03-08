@@ -2,12 +2,15 @@
 <table>
   <tbody>
     <tr>
+      <td>ユーザー</td>
+      <td>商標ID</td>
       <td>商標</td>
       <td>商標詳細</td>
     </tr>
 
     <% @trademarks.each do |trademark| %>
       <tr>
+        <td><%= trademark.user.user_name %></td>
         <td><%= trademark.id %></td>
         <td><%= trademark.tm_name %></td>
         <td><%= trademark.description %></td>

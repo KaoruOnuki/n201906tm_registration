@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_135949) do
+ActiveRecord::Schema.define(version: 2019_03_08_041755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_03_07_135949) do
     t.integer "registration_number"
     t.date "registration_date"
     t.integer "maintenance_period"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_trademarks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,4 +53,5 @@ ActiveRecord::Schema.define(version: 2019_03_07_135949) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "trademarks", "users"
 end

@@ -3,7 +3,7 @@ class TrademarksController < ApplicationController
   before_action :your_page, only:[:index, :new, :show, :destroy]
 
   def index
-    @trademarks = Trademark.all
+    @trademarks = current_user.trademarks.all
   end
 
   def new
@@ -11,7 +11,7 @@ class TrademarksController < ApplicationController
   end
 
   def create
-    @trademark = Trademark.new(trademark_params)
+    @trademark = current_user.trademarks.new(trademark_params)
     if @trademark.save
       redirect_to trademarks_path, notice: "商標作成"
     else
