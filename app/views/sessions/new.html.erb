@@ -1,3 +1,4 @@
+<h1>ユーザーログイン</h1>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
   <%= f.label "メールアドレス" %>
   <%= f.email_field :email %>
@@ -7,3 +8,18 @@
 
   <%= f.submit "ログイン" %>
 <% end %>
+ユーザー登録がまだですか？
+<%= link_to "アカウント登録", new_user_path %>
+
+<h1>管理者ログイン</h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <%= f.label "メールアドレス" %>
+  <%= f.email_field :admin_email %>
+
+  <%= f.label "パスワード" %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "ログイン" %>
+<% end %>
+管理者登録がまだですか？
+<%= link_to "管理者アカウント登録", new_admin_user_path %>

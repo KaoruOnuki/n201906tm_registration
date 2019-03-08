@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_041755) do
+ActiveRecord::Schema.define(version: 2019_03_08_052556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "admin_name", null: false
+    t.string "admin_email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_email"], name: "index_admin_users_on_admin_email", unique: true
+  end
 
   create_table "trademarks", force: :cascade do |t|
     t.datetime "created_at", null: false
