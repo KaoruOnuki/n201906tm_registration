@@ -1,6 +1,6 @@
 class StatesController < ApplicationController
   def new
-    @trademark = Trademark.find_by(id: params[:id])
+    @trademark = Trademark.find_by(id: params[:format])
     @state = State.new(trademark_id: @trademark.id)
     @state.save
     session[:trademark] = @trademark
