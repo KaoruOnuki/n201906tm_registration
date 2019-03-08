@@ -1,5 +1,7 @@
 class TrademarksController < ApplicationController
   before_action :set_trademark, only:[:show, :destroy]
+  before_action :your_page, only:[:index, :new, :show, :destroy]
+
   def index
     @trademarks = Trademark.all
   end
@@ -33,5 +35,11 @@ class TrademarksController < ApplicationController
 
   def set_trademark
     @trademark = Trademark.find(params[:id])
+  end
+
+  def your_page
+    unless logged_in?
+      redirect_to new_session_path
+    end
   end
 end
