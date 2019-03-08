@@ -22,6 +22,19 @@ class TrademarksController < ApplicationController
   def show
   end
 
+  def edit
+    @trademark = Trademark.find(params[:id])
+  end
+
+  def update
+    @trademark = Trademark.find(params[:id])
+    if @trademark.update(trademark_params)
+      redirect_to trademark_path(@trademark.id)
+    else
+      render "edit"
+    end
+  end
+
   def destroy
     @trademark.destroy
     redirect_to trademarks_path, notice: "商標削除"
@@ -30,7 +43,7 @@ class TrademarksController < ApplicationController
 
   private
   def trademark_params
-    params.require(:trademark).permit(:tm_name, :description)
+    params.require(:trademark).permit(:tm_name, :description, :investigation_result, :investigation_date, :apply_number, :apply_date, :judge_status, :registration_number, :registration_date, :maintenance_period)
   end
 
   def set_trademark

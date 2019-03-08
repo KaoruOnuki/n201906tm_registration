@@ -1,0 +1,81 @@
+<% if session[:user_id].present? %>
+    <%= form_with(model: @trademark, local: true) do |form| %>
+      <% if @trademark.errors.any? %>
+      <div class="error_msg">
+        <ul>
+          <% @trademark.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="trademark_name">
+        <%= form.label "商標名" %>
+        <%= form.text_field :tm_name %>
+      </div>
+
+      <div class="trademark_image">
+      </div>
+
+      <div class="trademark_description">
+        <%= form.label "商標詳細" %>
+        <%= form.text_field :description %>
+      </div>
+
+      <%= form.submit "更新"%>
+    <% end %>
+<% elsif session[:admin_user_id].present? %>
+  <%= form_with(model: @trademark, local: true) do |form| %>
+    <% if @trademark.errors.any? %>
+    <div class="error_msg">
+      <ul>
+        <% @trademark.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <p>
+      <%= form.label "調査結果" %>
+      <%= form.text_field :investigation_result %>
+    </p>
+
+    <p>
+      <%= form.label "調査日" %>
+      <%= form.date_field :investigation_date %>
+    </p>
+
+    <p>
+      <%= form.label "出願番号" %>
+      <%= form.number_field :apply_number %>
+    </p>
+
+    <p>
+      <%= form.label "出願日" %>
+      <%= form.date_field :apply_date %>
+    </p>
+
+    <p>
+      <%= form.label "審査状況" %>
+      <%= form.select :judge_status, [["", nil], ["登録査定中", "登録査定中"], ["拒絶通知受取", "拒絶通知受取"], ["意見書補正書作成中", "意見書補正書作成中"], ["再審査請求中", "再審査請求中"], ["審査通過完了", "審査通過完了"]] %>
+    </p>
+
+    <p>
+      <%= form.label "登録番号" %>
+      <%= form.number_field :registration_number %>
+    </p>
+
+    <p>
+      <%= form.label "登録日" %>
+      <%= form.date_field :registration_date %>
+    </p>
+
+    <p>
+      <%= form.label "維持期間" %>
+      <%= form.select :maintenance_period, [["", nil], ["10", 10], ["5", 5]] %>
+    </p>
+    <%= form.submit "更新"%>
+  <% end %>
+<% end %>

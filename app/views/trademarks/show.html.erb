@@ -2,13 +2,38 @@
 <p>商標内容：<%= @trademark.description %></p>
 
 <% if session[:admin_user_id].present? %>
-  <% if @trademark.state != nil %>
-    <td><%= @trademark.state.status_investigation %></td>
-    <td><%= @trademark.state.status_apply %></td>
-    <td><%= @trademark.state.status_judge %></td>
-    <td><%= @trademark.state.status_registration %></td>
-    <td><%= link_to "edit", edit_state_path(@trademark.id) %></td>
-  <% else %>
-    <%= link_to "new", new_state_path(@trademark.id) %>
-  <% end %>
+<p>ユーザー名：<%= @trademark.user.user_name %>さん</p>
+  <h1>ステータス管理</h1>
+  <table>
+    <tbody>
+      <tr>
+        <td>investigated?</td>
+        <td>applied?</td>
+        <td>judged?</td>
+        <td>registered?</td>
+      </tr>
+      <tr>
+        <% if @trademark.state != nil %>
+          <td><%= @trademark.state.status_investigation %></td>
+          <td><%= @trademark.state.status_apply %></td>
+          <td><%= @trademark.state.status_judge %></td>
+          <td><%= @trademark.state.status_registration %></td>
+          <td><%= link_to "edit", edit_state_path(@trademark.id) %></td>
+        <% else %>
+          <%= link_to "new", new_state_path(@trademark.id) %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1>詳細管理</h1>
+  <p>調査結果：<%= @trademark.investigation_result %></p>
+  <p>調査日：<%= @trademark.investigation_date %></p>
+  <p>出願番号：<%= @trademark.apply_number %></p>
+  <p>出願日：<%= @trademark.apply_date %></p>
+  <p>審査状況：<%= @trademark.judge_status %></p>
+  <p>登録番号：<%= @trademark.registration_number %></p>
+  <p>登録日：<%= @trademark.registration_date %></p>
+  <p>維持期間：<%= @trademark.maintenance_period %></p>
+  <%= link_to "詳細編集", edit_trademark_path(@trademark.id) %>
 <% end %>
