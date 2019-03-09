@@ -12,8 +12,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id
     @contact.trademark_id = session[:trademark]["id"]
+    @trademark = Trademark.find_by(id: session[:trademark]["id"])
     if @contact.name.empty?
-      @contact.name = current_user.name
+      @contact.name = current_user.user_name
     end
 
     if @contact.email.empty?

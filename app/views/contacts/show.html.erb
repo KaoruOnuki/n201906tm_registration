@@ -1,19 +1,106 @@
-<div class="container">
-  <h1>調査申込内容</h1>
-    <div class="contact_details">
-      <div class="contact-date">送信日&nbsp<%= @contact.created_at.strftime('%Y/%m/%d') %></div>
-      <div class="contact_details_inner">
-        <p class="contact_details_inner_title">確認メール受け取りのメールアドレス</p>
-        <p class="contact_details_inner_explaination"><%= @contact.email %></p>
-      </div>
+<div class="tmnew">
+  <div class="tmnew_to_all">
+    <%= link_to '◀︎調査依頼お申し込みフォームに戻る', new_contact_path(@trademark.id) %>
+  </div>
 
-      <div class="contact_details_inner">
-        <p class="contact_details_inner_title">お問い合わせ内容</p>
-        <p class="contact_details_inner_explaination"><%= @contact.content %></p>
-      </div>
+  <div class="tmnew_form">
+    <div class="tm_new_notice">
+      <h2>調査申込内容</h2>
     </div>
 
-  <div class="column-footer">
-    <%= link_to "調査依頼履歴", contacts_path(@trademark.id) %>
+    <div class="new_form">
+      <div class="content">
+        <a class="form_label">送信日</a>
+        <a class="form_text"><%= @contact.created_at.strftime('%Y/%m/%d') %></a>
+      </div>
+
+      <% if @contact.experienced.present? %>
+        <div class="content">
+          <a class="form_label">商標登録のご経験があるか</a>
+          <a class="form_text">
+            <% if @contact.experienced == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </div>
+      <% end %>
+
+      <% if @contact.email.present? %>
+        <div class="content">
+          <a class="form_label">メールアドレス</a>
+          <a class="form_text"><%= @contact.email %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.phone_number.present? %>
+        <div class="content">
+          <a class="form_label">お電話番号</a>
+          <a class="form_text"><%= @contact.phone_number %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.company_name.present? %>
+        <div class="content">
+          <a class="form_label">会社名・屋号</a>
+          <a class="form_text"><%= @contact.company_name %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.website.present? %>
+        <div class="content">
+          <a class="form_label">ホームページ</a>
+          <a class="form_text"><%= @contact.website %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.tmname.present? %>
+        <div class="content">
+          <a class="form_label">商標</a>
+          <a class="form_text"><%= @contact.tmname %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.content.present? %>
+        <div class="content">
+          <a class="form_label">商品・サービス</a>
+          <a class="form_text"><%= @contact.content %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.preferred_contact.present? %>
+        <div class="content">
+          <a class="form_label">電話ヒアリングを希望するか</a>
+          <a class="form_text">
+            <% if @contact.preferred_contact == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </div>
+      <% end %>
+
+      <% if @contact.contact_time.present? %>
+        <div class="content">
+          <a class="form_label">希望時間帯</a>
+          <a class="form_text"><%= @contact.contact_time %></a>
+        </div>
+      <% end %>
+
+      <% if @contact.used.present? %>
+        <div class="content">
+          <a class="form_label">ご依頼の商標を使用しているか</a>
+          <a class="form_text">
+            <% if @contact.used == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

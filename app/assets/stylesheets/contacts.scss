@@ -1,3 +1,128 @@
-// Place all the styles related to the contacts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@charset "UTF-8";
+// new.html.erb
+.tmnew {
+  margin-bottom: 50px;
+}
+
+    .tmnew .tmnew_to_all {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+        .tmnew .tmnew_to_all a{
+          color: #333;
+          text-decoration: none;
+          font-size: 13px;
+        }
+
+        .tmnew .tmnew_to_all a:hover{
+          text-decoration: underline;
+        }
+
+    .tmnew_form {
+      background-color: #F7F7F9;
+      padding: 40px;
+      box-shadow: 0 1px 3px 0 rgba(0,0,0,0.5);
+    }
+
+        .tmnew_form .tm_new_notice h2{
+          margin: 0;
+        }
+
+        .tmnew_form .tm_new_notice p{
+          margin: 0;
+          line-height: 1.5;
+          font-size: 12px;
+        }
+
+        .tmnew_form .new_form {
+          margin-top: 50px;
+        }
+
+            .tmnew_form .new_form .content{
+              display: grid;
+              grid-template-columns: 1fr 1fr  1fr;
+              grid-template-rows: 1fr;
+              width: 100%;
+              margin-bottom: 20px;
+            }
+
+                .tmnew_form .new_form .content .form_label {
+                  grid-column: 1/2;
+                  grid-row: 1/2;
+                  text-align: right;
+                  padding-right: 20px;
+                  font-weight: bold;
+                }
+
+                .tmnew_form .new_form .content .form_text {
+                  grid-column: 2/4;
+                  grid-row: 1/2;
+                  width: 80%;
+                }
+
+                .tmnew_form .new_form .content .form_text_area {
+                  grid-column: 2/4;
+                  grid-row: 1/2;
+                  width: 80%;
+                  height: 200px;
+                  padding: 5px 0 0 5px;
+                }
+
+            .tmnew_form .new_form .send_tm{
+              background: -moz-linear-gradient(left, #009b65, #7bfccf);
+              background: -webkit-linear-gradient(left, #009b65, #7bfccf);
+              background: linear-gradient(to right, #009b65, #7bfccf);
+              border-radius: 25px;
+              height: 50px;
+              line-height: 50px;
+              text-align: center;
+              text-decoration: none;
+              width: 240px;
+              box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+              margin: 50px auto;
+              text-align: center;
+            }
+
+            .tmnew_form .new_form .send_tm:hover{
+              cursor: pointer;
+            }
+
+                .tmnew_form .new_form .send_tm .send_tm_invest{
+                  background: transparent;
+                  border: none;
+                  color: #fff;
+                  font-size: 14px;
+                  font-weight: bold;
+                  width: 100%;
+                  height: 100%;
+                }
+
+                .tmnew_form .new_form .send_tm .send_tm_invest:hover{
+                  cursor: pointer;
+                }
+
+// index.html.erb
+.history_inner {
+  background-color: #fff;
+  padding: 20px;
+  width: 60%;
+  margin: 10px auto;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.5);
+}
+
+  .history_inner .history_content span{
+    float: right;
+    clear: both;
+  }
+
+  .history_inner .history_content span a{
+    color: #333;
+    text-decoration: none;
+  }
+
+  .history_inner .history_content span a:hover{
+    text-decoration: underline;
+  }
+
+// show.html.erb

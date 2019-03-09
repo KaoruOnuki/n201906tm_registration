@@ -1,19 +1,91 @@
-<h2>調査依頼メールを受信しました</h2>
+      <h3>調査依頼メールを受信しました</h3>
+<p>----------------------------------</p>
+      <h3><商標情報></h3>
+        <p class="content">
+          <a class="form_label">商標名 ▼<br></a>
+          <a class="form_text"><%= @contact.tmname %></a>
+        </p>
 
-<h3>▼　商標情報</h3>
-<p>商標名<%= @contact.tmname %></p>
-<p>商品・サービス<%= @contact.content %></p>
-<p>商標使用の有無<%= @contact.used %></p>
+        <p class="content">
+          <a class="form_label">商品・サービス ▼<br></a>
+          <a class="form_text"><%= @contact.content %></a>
+        </p>
 
-<h3>▼　ユーザー情報</h3>
-<p>名前<%= @contact.name %></p>
-<p>電話番号<%= @contact.phone_number %></p>
-<p>電話でのやりとりを希望<%= @contact.preferred_contact %></p>
-<p>電話希望時間帯<%= @contact.contact_time %></p>
+        <p class="content">
+          <a class="form_label">商標使用の有無 ▼<br></a>
+          <a class="form_text">
+            <% if @contact.used == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </p>
 
-<p>メールアドレス<%= @contact.email %></p>
-<p>会社名・屋号<%= @contact.company_name %></p>
-<p>ホームページ<%= @contact.website %></p>
+<p>----------------------------------</p>
+      <h3>ユーザー情報</h3>
+      <p>
+        <a class="form_label">名前 ▼<br></a>
+        <a class="form_text"><%= @contact.name %></a>
+      </p>
 
-<p>商標登録出願経験の有無<%= @contact.experienced %></p>
-<p>申込規約同意<%= @contact.agreed_regulation %></p>
+      <p>
+        <a class="form_label">メールアドレス ▼<br></a>
+        <a class="form_text"><%= @contact.email %></a>
+      </p>
+
+      <p class="content">
+        <a class="form_label">会社名・屋号 ▼<br></a>
+        <a class="form_text"><%= @contact.company_name %></a>
+      </p>
+
+      <p class="content">
+        <a class="form_label">ホームページ ▼<br></a>
+        <a class="form_text"><%= @contact.website %></a>
+      </p>
+
+
+      <p class="content">
+        <a class="form_label">電話番号 ▼<br></a>
+        <a class="form_text"><%= @contact.phone_number %></a>
+      </p>
+
+      <p class="content">
+        <a class="form_label">電話ヒアリングを希望するか ▼<br></a>
+        <a class="form_text">
+          <% if @contact.preferred_contact == true %>
+            はい
+          <% else %>
+            いいえ
+          <% end %>
+        </a>
+      </p>
+
+      <p class="content">
+        <a class="form_label">希望時間帯 ▼<br></a>
+        <a class="form_text"><%= @contact.contact_time %></a>
+      </p>
+
+<p>----------------------------------</p>
+      <h3>その他</h3>
+        <p>
+          <a class="form_label">商標登録出願経験の有無 ▼<br></a>
+          <a class="form_text">
+            <% if @contact.experienced == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </p>
+
+        <p>
+          <a class="form_label">申込規約同意の有無 ▼<br></a>
+          <a class="form_text">
+            <% if @contact.agreed_regulation == true %>
+              はい
+            <% else %>
+              いいえ
+            <% end %>
+          </a>
+        </p>

@@ -1,4 +1,3 @@
-<h1>管理者アカウント登録画面</h1>
 <% if @admin_user.errors.any? %>
   <div class="error_msg">
     <ul>
@@ -9,26 +8,38 @@
   </div>
 <% end %>
 
-<%= form_with(model: @admin_user, local: true) do |form| %>
-  <div class="admin_name">
-    <%= form.label "お名前" %>
-    <%= form.text_field :admin_name %>
+<div class="new_acct">
+  <div class="admin_title">
+    <h1>管理者アカウント作成</h1>
+    <p>作成後はログイン画面からログインをしてください。</p>
   </div>
 
-  <div class="admin_user_email">
-    <%= form.label "メールアドレス" %>
-    <%= form.email_field :admin_email %>
-  </div>
+  <div class="loginform">
+    <%= form_with(model: @admin_user, local: true) do |form| %>
+      <div class="input">
+        <div class="content">
+          <%= form.label "管理者名", class: :form_label %>
+          <%= form.text_field :admin_name, class: :form_text %>
+        </div>
 
-  <div class="admin_user_pw">
-    <%= form.label "パスワード（６文字以上）" %>
-    <%= form.password_field :password %>
-  </div>
+        <div class="content">
+          <%= form.label "メールアドレス", class: :form_label %>
+          <%= form.email_field :admin_email, class: :form_text %>
+        </div>
 
-  <div class="admin_user_pwconfirm">
-    <%= form.label "パスワード確認" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
+        <div class="content">
+          <%= form.label "パスワード（６文字以上）", class: :form_label %>
+          <%= form.password_field :password, class: :form_text %>
+        </div>
 
-  <%= form.submit "管理者アカウント作成"%>
-<% end %>
+        <div class="content">
+          <%= form.label "パスワード確認", class: :form_label %>
+          <%= form.password_field :password_confirmation, class: :form_text %>
+        </div>
+      </div>
+      <div class="loginbtn2">
+        <%= form.submit "登録する", class: :btn%>
+      </div>
+    <% end %>
+  </div>
+</div>

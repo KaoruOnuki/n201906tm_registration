@@ -1,33 +1,86 @@
-これがユーザーの商標管理画面になる
-<table>
-  <tbody>
-    <tr>
-      <td>ユーザー</td>
-      <td>商標ID</td>
-      <td>商標</td>
-      <td>商標詳細</td>
-    </tr>
+<div class="tm_index">
+  <div class="welcome">
+    <p>ようこそ<%= current_user.user_name%>さん</p>
+  </div>
 
-    <% @trademarks.each do |trademark| %>
-      <tr>
-        <td><%= trademark.user.user_name %></td>
-        <td><%= trademark.id %></td>
-        <td><%= trademark.tm_name %></td>
-        <td><%= trademark.description %></td>
-        <% if trademark.state != nil %>
-          <td><%= trademark.state.status_investigation %></td>
-          <td><%= trademark.state.status_apply %></td>
-          <td><%= trademark.state.status_judge %></td>
-          <td><%= trademark.state.status_registration %></td>
+  <div class="addnew">
+    <%= link_to "+ 商標を追加する", new_trademark_path, class: :addnew_btn %>
+  </div>
+
+  <div class="titles">
+    <div class="tm">商標</div>
+    <div class="invest">調査<i class="fa fa-angle-right"></i></div>
+    <div class="apply">出願<i class="fa fa-angle-right"></i></div>
+    <div class="judge">審査<i class="fa fa-angle-right"></i></div>
+    <div class="register">登録</div>
+  </div>
+
+  <% @trademarks.each do |trademark| %>
+    <div class="tmcontents">
+      <div class="tmsum">
+        <div class="tm"><%= trademark.tm_name %><span><%= link_to "詳細確認", trademark_path(trademark.id) %></span></div>
+        <div class="invest">
+          <p class="investbtn">
+            <%= link_to "調査申込み", new_contact_path(trademark.id), class: :invest_btn %>
+          </p>
+        </div>
+
+        <div class="apply">
+          <% if trademark.state.status_apply == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+            <% if trademark.apply_number.present? %>
+              <p>出願番号：<%= trademark.apply_number %></p>
+            <% end %>
+            <% if trademark.apply_date.present? %>
+              <p>出願日：<%= trademark.apply_date %></p>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="judge">
+          <% if trademark.state.status_judge == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+            <% if trademark.judge_status.present? %>
+              <p><%= trademark.judge_status %></p>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="register">
+          <% if trademark.state.status_registration == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+            <% if trademark.registration_number.present? %>
+              <p>登録番号：<%= trademark.registration_number %></p>
+            <% end %>
+            <% if trademark.registration_date.present? %>
+              <p>登録日：<%= trademark.registration_date %></p>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="tmdetails">
+        <% if trademark.apply_number.present? %>
+          <div><p>出願番号：<%= trademark.apply_number %></p></div>
         <% end %>
-        <td><%= link_to "調査申込", new_contact_path(trademark.id) %></td>
-        <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
-        <td><%= link_to "詳細編集", edit_trademark_path(trademark.id) %></td>
-        <td><%= link_to "削除", trademark_path(trademark.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
-      </tr>
-
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to "+商標を追加する", new_trademark_path %>
+        <% if trademark.registration_number.present? %>
+          <div><p>登録番号：<%= trademark.registration_number %></p></div>
+        <% end %>
+        <% if trademark.apply_date.present? %>
+          <div><p>出願日：<%= trademark.apply_date %></p></div>
+        <% end %>
+        <% if trademark.registration_date.present? %>
+          <div><p>登録日：<%= trademark.registration_date %></p></div>
+        <% end %>
+        <div class="edittm"><%= link_to "詳細編集", edit_trademark_path(trademark.id) %></div>
+        <div class="deletetm"><%= link_to "削除", trademark_path(trademark.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+      </div>
+    </div>
+  <% end %>
+</div>

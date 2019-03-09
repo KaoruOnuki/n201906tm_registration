@@ -14,18 +14,33 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
 
-
+    <div class="header">
       <% if logged_in? %>
         <% if session[:admin_user_id] == nil %>
-          <%= link_to "プロフィール", user_path(current_user.id) %>
-          <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+          <div class="user_header">
+            <%= link_to "一覧画面", trademarks_path, class: :header_user_btn %>
+          </div>
+
+          <div class="login_header">
+            <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: :header_login_btn %>
+          </div>
         <% elsif session[:user_id] == nil %>
-          <%= link_to "管理者画面", admin_user_path(current_user.id) %>
-          <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+          <div class="admin_header">
+            <%= link_to "管理者画面", admin_user_path(current_user.id), class: :header_admin_btn %>
+          </div>
+          
+          <div class="login_header">
+            <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: :header_login_btn %>
+          </div>
         <% end %>
       <% else %>
-        <%= link_to "ログイン", new_session_path %>
+        <% unless current_page?(new_session_path) %>
+        <div class="login_header">
+          <%= link_to "ログイン", new_session_path, class: :header_login_btn %>
+        </div>
+        <% end %>
       <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

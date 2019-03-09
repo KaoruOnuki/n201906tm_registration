@@ -1,4 +1,3 @@
-<h1>ユーザーアカウント作成ページ</h1>
 <% if @user.errors.any? %>
   <div class="error_msg">
     <ul>
@@ -9,26 +8,39 @@
   </div>
 <% end %>
 
-<%= form_with(model: @user, local: true) do |form| %>
-  <div class="user_name">
-    <%= form.label "お名前" %>
-    <%= form.text_field :user_name %>
+<div class="new_acct">
+  <div class="title">
+    <h1>ユーザーアカウント作成</h1>
+    <p>作成後はログイン画面からログインをしてください。</p>
   </div>
 
-  <div class="user_email">
-    <%= form.label "メールアドレス" %>
-    <%= form.email_field :email %>
-  </div>
+  <div class="loginform">
+    <%= form_with(model: @user, local: true) do |form| %>
+      <div class="input">
+        <div class="content">
+          <%= form.label "お名前", class: :form_label %>
+          <%= form.text_field :user_name, class: :form_text %>
+        </div>
 
-  <div class="user_pw">
-    <%= form.label "パスワード（６文字以上）" %>
-    <%= form.password_field :password %>
-  </div>
+        <div class="content">
+          <%= form.label "メールアドレス", class: :form_label %>
+          <%= form.email_field :email, class: :form_text %>
+        </div>
 
-  <div class="user_pwconfirm">
-    <%= form.label "パスワード確認" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
+        <div class="content">
+          <%= form.label "パスワード（６文字以上）", class: :form_label %>
+          <%= form.password_field :password, class: :form_text %>
+        </div>
 
-  <%= form.submit "アカウント作成"%>
-<% end %>
+        <div class="content">
+          <%= form.label "パスワード確認", class: :form_label %>
+          <%= form.password_field :password_confirmation, class: :form_text %>
+        </div>
+      </div>
+
+      <div class="loginbtn">
+        <%= form.submit "登録する", class: :btn%>
+      </div>
+    <% end %>
+  </div>
+</div>

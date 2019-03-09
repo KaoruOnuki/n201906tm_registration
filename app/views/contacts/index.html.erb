@@ -1,14 +1,19 @@
-<div class="container">
-  <h1>調査依頼履歴</h1>
-    <p><%= link_to '調査申込', new_contact_path(@trademark.id) %></p>
+<div class="tmnew">
+  <div class="tmnew_to_all">
+    <%= link_to '◀︎調査依頼お申し込みフォームに戻る', new_contact_path(@trademark.id) %>
+  </div>
+
+  <div class="tmnew_form">
+    <div class="tm_new_notice">
+      <h2><%= @trademark.tm_name %>に関する調査依頼履歴</h2>
+    </div>
 
     <% @contacts.each do |contact| %>
      <% if contact.user_id == current_user.id && contact.trademark_id == @trademark.id %>
-     <div class="contacts_inner">
-       <p class="contact_title"><%= link_to contact do %>申込内容確認<% end %></p>
-       <p class="contact_content">送信日&nbsp<%= contact.created_at.strftime('%Y/%m/%d') %></p>
-       <p>商品・サービス&nbsp<%= contact.content %></p>
-     </div>
+       <div class="history_inner">
+         <p class="history_content">送信日：&nbsp<%= contact.created_at.strftime('%Y/%m/%d') %><span><%= link_to contact do %>調査依頼お申し込み内容▶︎<% end %></span></p>
+       </div>
      <% end %>
     <% end %>
+  </div>
 </div>
