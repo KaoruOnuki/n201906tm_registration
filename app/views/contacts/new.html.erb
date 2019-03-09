@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>調査依頼申し込みフォーム</h1>
+  <div class="column-footer">
+    <%= link_to "過去の調査依頼", contacts_path(@trademark.id) %>
+  </div>
+
+  <div class="new_contact">
+    <%= form_with(model: @contact, local: true) do |form| %>
+      <% if @contact.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @contact.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form.label :商標 %>
+      <%= form.text_field :tmname %>
+
+      <%= form.label :商品・サービス %>
+      <%= form.text_area :content %>
+
+
+      <%= form.label :電話番号 %>
+      <%= form.telephone_field(:phone_number)%>
+
+      <label><%= form.radio_button :agreed_regulation, "true" %>申込規約を確認しました</label>
+      <label><%= form.radio_button :used, "true" %>ご依頼の商標の使用</label>
+
+
+        <div class="caution">
+          <p>送信完了後、ご指定のメールアドレスに確認メールが届きます<br>もし指定がなければ下記のメールアドレスにメールが届きます</p>
+        </div>
+
+        <div class="row">
+          <%= form.label :名前 %>
+          <%= form.text_field :name, value: current_user.user_name %>
+        </div>
+
+        <div class="row">
+          <%= form.label :メールアドレス %>
+          <%= form.text_field :email, value: current_user.email %>
+        </div>
+      <%= form.submit "送信する", title: "送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
+    <% end %>
+  </div>
+</div>

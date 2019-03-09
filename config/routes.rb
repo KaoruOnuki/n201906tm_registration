@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :admin_users, only: [:new, :create, :show]
 
-
   resources :states
 
+  resources :contacts
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

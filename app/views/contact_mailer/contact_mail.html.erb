@@ -1,0 +1,19 @@
+<h2>調査依頼メールを受信しました</h2>
+
+<h3>▼　商標情報</h3>
+<p>商標名<%= @contact.tmname %></p>
+<p>商品・サービス<%= @contact.content %></p>
+<p>商標使用の有無<%= @contact.used %></p>
+
+<h3>▼　ユーザー情報</h3>
+<p>名前<%= @contact.name %></p>
+<p>電話番号<%= @contact.phone_number %></p>
+<p>電話でのやりとりを希望<%= @contact.preferred_contact %></p>
+<p>電話希望時間帯<%= @contact.contact_time %></p>
+
+<p>メールアドレス<%= @contact.email %></p>
+<p>会社名・屋号<%= @contact.company_name %></p>
+<p>ホームページ<%= @contact.website %></p>
+
+<p>商標登録出願経験の有無<%= @contact.experienced %></p>
+<p>申込規約同意<%= @contact.agreed_regulation %></p>

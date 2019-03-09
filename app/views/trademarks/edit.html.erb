@@ -49,7 +49,7 @@
 
     <p>
       <%= form.label "出願番号" %>
-      <%= form.number_field :apply_number %>
+      <%= form.number_field :apply_number, min: 1 %>
     </p>
 
     <p>
@@ -64,7 +64,7 @@
 
     <p>
       <%= form.label "登録番号" %>
-      <%= form.number_field :registration_number %>
+      <%= form.number_field :registration_number, min: 1 %>
     </p>
 
     <p>

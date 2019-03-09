@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>調査依頼履歴</h1>
+    <p><%= link_to '調査申込', new_contact_path(@trademark.id) %></p>
+
+    <% @contacts.each do |contact| %>
+     <% if contact.user_id == current_user.id && contact.trademark_id == @trademark.id %>
+     <div class="contacts_inner">
+       <p class="contact_title"><%= link_to contact do %>申込内容確認<% end %></p>
+       <p class="contact_content">送信日&nbsp<%= contact.created_at.strftime('%Y/%m/%d') %></p>
+       <p>商品・サービス&nbsp<%= contact.content %></p>
+     </div>
+     <% end %>
+    <% end %>
+</div>

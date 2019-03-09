@@ -20,6 +20,7 @@
           <td><%= trademark.state.status_judge %></td>
           <td><%= trademark.state.status_registration %></td>
         <% end %>
+        <td><%= link_to "調査申込", new_contact_path(trademark.id) %></td>
         <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
         <td><%= link_to "詳細編集", edit_trademark_path(trademark.id) %></td>
         <td><%= link_to "削除", trademark_path(trademark.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>

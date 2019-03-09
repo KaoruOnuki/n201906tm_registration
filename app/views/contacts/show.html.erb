@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>調査申込内容</h1>
+    <div class="contact_details">
+      <div class="contact-date">送信日&nbsp<%= @contact.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="contact_details_inner">
+        <p class="contact_details_inner_title">確認メール受け取りのメールアドレス</p>
+        <p class="contact_details_inner_explaination"><%= @contact.email %></p>
+      </div>
+
+      <div class="contact_details_inner">
+        <p class="contact_details_inner_title">お問い合わせ内容</p>
+        <p class="contact_details_inner_explaination"><%= @contact.content %></p>
+      </div>
+    </div>
+
+  <div class="column-footer">
+    <%= link_to "調査依頼履歴", contacts_path(@trademark.id) %>
+  </div>
+</div>
