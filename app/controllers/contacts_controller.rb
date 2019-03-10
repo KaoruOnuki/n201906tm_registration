@@ -23,7 +23,7 @@ class ContactsController < ApplicationController
 
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
-      redirect_to @contact, notice: '調査依頼ありがとうございます。担当者より早急にご連絡をさせて頂きます。'
+      redirect_to @contact, notice: '商標調査のご依頼ありがとうございます。担当者よりご連絡をさせて頂きますので少々お待ちくださいませ。'
     else
       render :new
     end

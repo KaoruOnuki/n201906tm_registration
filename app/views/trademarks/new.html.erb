@@ -9,18 +9,21 @@
 <% end %>
 
 <%= form_with(model: @trademark, local: true) do |form| %>
-  <div class="trademark_name">
-    <%= form.label "商標名" %>
-    <%= form.text_field :tm_name %>
+  <div class="admin_tmedit">
+    <div class="admin_tmshow">
+      <div class="heading">
+        <div class="titles_user">
+          <div class="one">商標名</div>
+          <div class="two">商標内容</div>
+        </div>
+        <div class="contents">
+          <div class="one"><%= form.text_field :tm_name %></div>
+          <div class="two"><%= form.text_field :description %></div>
+        </div>
+      </div>
+    </div>
+    <div class="user_done_edit">
+      <%= form.submit "登録", class: :user_done_edit_btn%>
+    </div>
   </div>
-
-<div class="trademark_image">
-</div>
-
-  <div class="trademark_description">
-    <%= form.label "商標詳細" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <%= form.submit "登録"%>
 <% end %>

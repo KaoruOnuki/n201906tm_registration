@@ -17,27 +17,31 @@
     <div class="header">
       <% if logged_in? %>
         <% if session[:admin_user_id] == nil %>
-          <div class="user_header">
-            <%= link_to "一覧画面", trademarks_path, class: :header_user_btn %>
-          </div>
+          <% unless current_page?(trademarks_path) %>
+            <div class="user_header">
+              <%= link_to "商標一覧画面", trademarks_path, class: :header_user_btn %>
+            </div>
+          <% end %>
 
           <div class="login_header">
             <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: :header_login_btn %>
           </div>
         <% elsif session[:user_id] == nil %>
-          <div class="admin_header">
-            <%= link_to "管理者画面", admin_user_path(current_user.id), class: :header_admin_btn %>
-          </div>
-          
+          <% unless current_page?(admin_user_path(current_user.id)) %>
+            <div class="admin_header">
+              <%= link_to "商標管理画面", admin_user_path(current_user.id), class: :header_admin_btn %>
+            </div>
+          <% end %>
+
           <div class="login_header">
             <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: :header_login_btn %>
           </div>
         <% end %>
       <% else %>
         <% unless current_page?(new_session_path) %>
-        <div class="login_header">
-          <%= link_to "ログイン", new_session_path, class: :header_login_btn %>
-        </div>
+          <div class="login_header">
+            <%= link_to "ログイン", new_session_path, class: :header_login_btn %>
+          </div>
         <% end %>
       <% end %>
     </div>

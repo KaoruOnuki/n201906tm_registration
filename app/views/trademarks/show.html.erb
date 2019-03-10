@@ -1,39 +1,126 @@
-<p>商標名：<%= @trademark.tm_name %></p>
-<p>商標内容：<%= @trademark.description %></p>
+<% if session[:user_id].present? %>
+<h2>商標詳細ページ</h2>
+  <div class="admin_tmshow">
+    <div class="heading">
+      <div class="titles_user">
+        <div class="one">商標名</div>
+        <div class="two">商標内容</div>
+      </div>
+      <div class="contents">
+        <div class="one"><%= @trademark.tm_name %></div>
+        <div class="two"><%= @trademark.description %></div>
+      </div>
+    </div>
+  </div>
 
-<% if session[:admin_user_id].present? %>
-<p>ユーザー名：<%= @trademark.user.user_name %>さん</p>
-  <h1>ステータス管理</h1>
-  <table>
-    <tbody>
-      <tr>
-        <td>investigated?</td>
-        <td>applied?</td>
-        <td>judged?</td>
-        <td>registered?</td>
-      </tr>
-      <tr>
-        <% if @trademark.state != nil %>
-          <td><%= @trademark.state.status_investigation %></td>
-          <td><%= @trademark.state.status_apply %></td>
-          <td><%= @trademark.state.status_judge %></td>
-          <td><%= @trademark.state.status_registration %></td>
-          <td><%= link_to "edit", edit_state_path(@trademark.id) %></td>
-        <% else %>
-          <%= link_to "new", new_state_path(@trademark.id) %>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+<% elsif session[:admin_user_id].present? %>
+商標作成日：<%= @trademark.created_at.strftime('%Y/%m/%d') %>
+  <div class="admin_tmshow">
+    <div class="heading">
+      <div class="titles">
+        <div class="one">商標名</div>
+        <div class="two">商標内容</div>
+      </div>
+      <div class="contents">
+        <div class="one"><%= @trademark.tm_name %></div>
+        <div class="two"><%= @trademark.description %></div>
+      </div>
+    </div>
 
-  <h1>詳細管理</h1>
-  <p>調査結果：<%= @trademark.investigation_result %></p>
-  <p>調査日：<%= @trademark.investigation_date %></p>
-  <p>出願番号：<%= @trademark.apply_number %></p>
-  <p>出願日：<%= @trademark.apply_date %></p>
-  <p>審査状況：<%= @trademark.judge_status %></p>
-  <p>登録番号：<%= @trademark.registration_number %></p>
-  <p>登録日：<%= @trademark.registration_date %></p>
-  <p>維持期間：<%= @trademark.maintenance_period %></p>
-  <%= link_to "詳細編集", edit_trademark_path(@trademark.id) %>
+    <div class="admintmshow">
+      <div class="titles">
+        <div class="invest">調査</div>
+        <div class="apply">出願</div>
+        <div class="judge">審査</div>
+        <div class="register">登録</div>
+      </div>
+      <div class="tmcontents">
+        <div class="admintmsum">
+          <div class="edit">
+            <% if @trademark.state != nil %>
+              <%= link_to "ステータス編集", edit_state_path(@trademark.id) %>
+            <% else %>
+              <%= link_to "ステータス編集", new_state_path(@trademark.id) %>
+            <% end %>
+          </div>
+          <div class="invest">
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true %>
+            <div class="on_the_proccess">
+              <p><i class="fa fa-check"></i></p>
+            </div>
+          </div>
+
+          <div class="apply">
+            <% if @trademark.state.present? && @trademark.state.status_apply == true %>
+            <div class="on_the_proccess">
+              <p><i class="fa fa-check"></i></p>
+            </div>
+            <% end %>
+          </div>
+
+          <div class="judge">
+            <% if @trademark.state.present? &&  @trademark.state.status_judge == true %>
+            <div class="on_the_proccess">
+              <p><i class="fa fa-check"></i></p>
+            </div>
+            <% end %>
+          </div>
+
+          <div class="register">
+            <% if @trademark.state.present? &&  @trademark.state.status_registration == true %>
+            <div class="on_the_proccess">
+              <p><i class="fa fa-check"></i></p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admintmshow">
+      <div class="tmcontents">
+        <div class="admintmdetails">
+          <div class="edit">
+            <%= link_to "詳細編集", edit_trademark_path(@trademark.id) %>
+          </div>
+          <div class="invest">
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true %>
+              <p>調査結果：<%= @trademark.investigation_result %></p>
+              <p>調査日：<%= @trademark.investigation_date %></p>
+            <% end %>
+          </div>
+
+          <div class="apply">
+            <% if @trademark.state.present? && @trademark.state.status_apply == true %>
+              <p>出願番号：<%= @trademark.apply_number %></p>
+              <p>出願日：<%= @trademark.apply_date %></p>
+            <% end %>
+          </div>
+
+          <div class="judge">
+            <% if @trademark.state.present? &&  @trademark.state.status_judge == true %>
+              <p>審査状況：<%= @trademark.judge_status %></p>
+            <% end %>
+          </div>
+
+          <div class="register">
+            <% if @trademark.state.present? &&  @trademark.state.status_registration == true %>
+              <p>登録番号：<%= @trademark.registration_number %></p>
+              <p>登録日：<%= @trademark.registration_date %></p>
+              <p>維持期間：<%= @trademark.maintenance_period %>年</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admintmshow_user">
+      <div class="user_contents">
+        <h3>登録ユーザー情報</h3>
+        <p>ユーザー名：<%= @trademark.user.user_name %></p>
+        <p>メールアドレス：<%= @trademark.user.email %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
 <% end %>

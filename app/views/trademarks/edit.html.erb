@@ -1,4 +1,5 @@
 <% if session[:user_id].present? %>
+  <h2>商標編集ページ</h2>
     <%= form_with(model: @trademark, local: true) do |form| %>
       <% if @trademark.errors.any? %>
       <div class="error_msg">
@@ -9,73 +10,102 @@
         </ul>
       </div>
       <% end %>
-
-      <div class="trademark_name">
-        <%= form.label "商標名" %>
-        <%= form.text_field :tm_name %>
+      <div class="admin_tmedit">
+        <div class="admin_tmshow">
+          <div class="heading">
+            <div class="titles_user">
+              <div class="one">商標名</div>
+              <div class="two">商標内容</div>
+            </div>
+            <div class="contents">
+              <div class="one"><%= form.text_field :tm_name %></div>
+              <div class="two"><%= form.text_area :description %></div>
+            </div>
+          </div>
+        </div>
+        <div class="user_done_edit">
+          <%= form.submit "編集完了", class: :user_done_edit_btn%>
+        </div>
       </div>
-
-      <div class="trademark_image">
-      </div>
-
-      <div class="trademark_description">
-        <%= form.label "商標詳細" %>
-        <%= form.text_field :description %>
-      </div>
-
-      <%= form.submit "更新"%>
     <% end %>
 <% elsif session[:admin_user_id].present? %>
-  <%= form_with(model: @trademark, local: true) do |form| %>
-    <% if @trademark.errors.any? %>
-    <div class="error_msg">
-      <ul>
-        <% @trademark.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <div class="tmedit_form">
+    <div class="tm_edit_notice">
+      <h2>商標詳細編集ページ</h2>
     </div>
-    <% end %>
 
-    <p>
-      <%= form.label "調査結果" %>
-      <%= form.text_field :investigation_result %>
-    </p>
+    <div class="states">
+      <div class="invest">調査</div>
+      <div class="apply">出願</div>
+      <div class="judge">審査</div>
+      <div class="register">登録</div>
+    </div>
 
-    <p>
-      <%= form.label "調査日" %>
-      <%= form.date_field :investigation_date %>
-    </p>
+    <div class="edit_form">
+    <%= form_with(model: @trademark, local: true) do |form| %>
+      <% if @trademark.errors.any? %>
+      <div class="error_msg">
+        <ul>
+          <% @trademark.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div class="contents">
+        <div class="invest">
+          <div class="content">
+            <%= form.label "調査結果", class: :form_label %>
+            <%= form.text_field :investigation_result, class: :form_text %>
+          </div>
 
-    <p>
-      <%= form.label "出願番号" %>
-      <%= form.number_field :apply_number, min: 1 %>
-    </p>
+          <div class="content">
+            <%= form.label "調査日", class: :form_label %>
+            <%= form.date_field :investigation_date, class: :form_text %>
+          </div>
+        </div>
 
-    <p>
-      <%= form.label "出願日" %>
-      <%= form.date_field :apply_date %>
-    </p>
+        <div class="apply">
+          <div class="content">
+            <%= form.label "出願番号", class: :form_label %>
+            <%= form.number_field :apply_number, min: 1, class: :form_text %>
+          </div>
 
-    <p>
-      <%= form.label "審査状況" %>
-      <%= form.select :judge_status, [["", nil], ["登録査定中", "登録査定中"], ["拒絶通知受取", "拒絶通知受取"], ["意見書補正書作成中", "意見書補正書作成中"], ["再審査請求中", "再審査請求中"], ["審査通過完了", "審査通過完了"]] %>
-    </p>
+          <div class="content">
+            <%= form.label "出願日", class: :form_label %>
+            <%= form.date_field :apply_date, class: :form_text %>
+          </div>
+        </div>
 
-    <p>
-      <%= form.label "登録番号" %>
-      <%= form.number_field :registration_number, min: 1 %>
-    </p>
+        <div class="judge">
+          <div class="content">
+            <%= form.label "審査状況", class: :form_label %>
+            <a class="form_text"><%= form.select :judge_status, [["", nil], ["登録査定中", "登録査定中"], ["拒絶通知受取", "拒絶通知受取"], ["意見書補正書作成中", "意見書補正書作成中"], ["再審査請求中", "再審査請求中"], ["審査通過完了", "審査通過完了"]] %></a>
+          </div>
+        </div>
 
-    <p>
-      <%= form.label "登録日" %>
-      <%= form.date_field :registration_date %>
-    </p>
+        <div class="register">
+          <div class="content">
+            <%= form.label "登録番号", class: :form_label %>
+            <%= form.number_field :registration_number, min: 1, class: :form_text %>
+          </div>
 
-    <p>
-      <%= form.label "維持期間" %>
-      <%= form.select :maintenance_period, [["", nil], ["10", 10], ["5", 5]] %>
-    </p>
-    <%= form.submit "更新"%>
-  <% end %>
+          <div class="content">
+            <%= form.label "登録日", class: :form_label %>
+            <%= form.date_field :registration_date, class: :form_text %>
+          </div>
+
+          <div class="content">
+            <%= form.label "維持期間", class: :form_label %>
+            <a class="form_text"><%= form.select :maintenance_period, [["", nil], ["10年", 10], ["5年", 5]] %></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="done_edit">
+        <%= form.submit "編集完了", class: :done_edit_btn%>
+      </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>

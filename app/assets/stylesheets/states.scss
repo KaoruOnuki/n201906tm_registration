@@ -1,3 +1,44 @@
-// Place all the styles related to the states controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// edit.html.erb
+.tmedit_form .states_form .contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  line-height: 3;
+  vertical-align: middle;
+  text-align: center;
+}
+
+    .tmedit_form .states_form .contents .invest {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      border-right: 1px solid #fff;
+      border: 1px solid #ddd;
+      border-right: none;
+    }
+
+    .tmedit_form .states_form .contents .apply {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      border-right: 1px solid #fff;
+      border: 1px solid #ddd;
+      border-right: none;
+    }
+
+    .tmedit_form .states_form .contents .judge {
+      grid-column: 3/4;
+      grid-row: 1/2;
+      border-right: 1px solid #fff;
+      border: 1px solid #ddd;
+      border-right: none;
+    }
+
+    .tmedit_form .states_form .contents .register {
+      grid-column: 4/5;
+      grid-row: 1/2;
+      border: 1px solid #ddd;
+    }
+
+
+.tmedit_form .states_form .contents .statusbtn {
+  width: 100%;
+}

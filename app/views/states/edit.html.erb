@@ -1,7 +1,45 @@
-<%= form_with(model: @state, local: true) do |form| %>
-  <label><%= form.radio_button :status_investigation, "true" %> investigation</label>
-  <label><%= form.radio_button :status_apply, "true" %> apply</label>
-  <label><%= form.radio_button :status_judge, "true" %> judge</label>
-  <label><%= form.radio_button :status_registration, "true" %> registration</label>
-  <%= form.submit "登録"%>
-<% end %>
+  <div class="tmedit_form">
+    <div class="tm_edit_notice">
+      <h2>商標ステータス編集ページ</h2>
+      <p>こちらでの操作は、ユーザー画面に変更が反映されます。</p>
+    </div>
+
+    <div class="states">
+      <div class="invest">調査</div>
+      <div class="apply">出願</div>
+      <div class="judge">審査</div>
+      <div class="register">登録</div>
+    </div>
+
+    <%= form_with(model: @state, local: true) do |form| %>
+      <div class="states_form">
+        <div class="contents">
+          <div class="invest">
+              <label><%= form.check_box :status_investigation %></label>
+          </div>
+
+          <div class="apply">
+            <% if @state.status_investigation == true %>
+              <label><%= form.check_box :status_apply %></label>
+            <% end %>
+          </div>
+
+          <div class="judge">
+            <% if @state.status_investigation == true && @state.status_apply == true %>
+              <label><%= form.check_box :status_judge %></label>
+            <% end %>
+          </div>
+
+          <div class="register">
+            <% if @state.status_investigation == true && @state.status_apply == true && @state.status_judge == true %>
+              <label><%= form.check_box :status_registration %></label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="done_edit">
+        <%= form.submit "ステータスを更新する", class: :done_edit_btn%>
+      </div>
+    <% end %>
+  </div>

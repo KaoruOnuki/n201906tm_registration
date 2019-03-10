@@ -24,7 +24,7 @@
 
           <div class="content">
             <a class="form_label">商標登録のご経験がある</a>
-            <a class="form_text"><label><%= form.radio_button :experienced, "true" %></label></a>
+            <a class="form_text"><label><%= form.check_box :experienced %></label></a>
           </div>
 
           <div class="content">
@@ -64,7 +64,7 @@
 
           <div class="content">
             <a class="form_label">電話ヒアリングを希望する</a>
-            <a class="form_text"><label><%= form.radio_button :preferred_contact, "true" %></label></a>
+            <a class="form_text"><label><%= form.check_box :preferred_contact %></label></a>
           </div>
 
           <div class="content">
@@ -74,17 +74,17 @@
 
           <div class="content">
             <a class="form_label">ご依頼の商標を使用している</a>
-            <a class="form_text"><label><%= form.radio_button :used, "true" %></label></a>
+            <a class="form_text"><label><%= form.check_box :used %></label></a>
           </div>
 
           <div class="content">
             <a class="form_label">申込規約を確認しました</a>
-            <a class="form_text"><label><%= form.radio_button :agreed_regulation, "true" %></label></a>
+            <a class="form_text"><label><%= form.check_box :agreed_regulation %></label></a>
           </div>
 
 
           <div class="send_tm">
-            <%= form.submit "送信する", title: "送信の確認", class: :send_tm_invest, data: {confirm: 'この内容で調査依頼を送りますか？', cancel: "やめる", commit: "送る"} %>
+            <%= form.submit "送信する", title: "送信の確認", class: :send_tm_invest%>
           </div>
         <% end %>
       </div>

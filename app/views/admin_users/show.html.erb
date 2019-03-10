@@ -1,33 +1,55 @@
+<div class="contact_show">
+  <div class="welcome">
+    <p>管理者<%= @admin_user.admin_name %>さんとしてログイン中</p>
+  </div>
 
+  <h2>商標管理画面</h2>
 
-<div class="welcome">
-  <p>管理者<%= @admin_user.admin_name %>さんとしてログイン中</p>
+  <div class="titles">
+    <div class="tm">商標</div>
+    <div class="invest">調査</div>
+    <div class="apply">出願</div>
+    <div class="judge">審査</div>
+    <div class="register">登録</div>
+  </div>
+
+  <% @all_trademarks.each do |trademark| %>
+    <div class="tmcontents">
+      <div class="contactsum">
+        <div class="edit"><%= link_to "編集", trademark_path(trademark.id) %></div>
+        <div class="tm"><%= trademark.tm_name %></div>
+        <div class="invest">
+          <% if trademark.state.present? && trademark.state.status_investigation == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="apply">
+          <% if trademark.state.present? && trademark.state.status_apply == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="judge">
+          <% if trademark.state.present? && trademark.state.status_judge == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="register">
+          <% if trademark.state.present? && trademark.state.status_registration == true %>
+          <div class="on_the_proccess">
+            <p><i class="fa fa-check"></i></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
-
-<h2>商標管理画面</h2>
-<table>
-  <tbody>
-    <tr>
-      <td>ユーザー</td>
-      <td>商標ID</td>
-      <td>商標</td>
-      <td>商標詳細</td>
-    </tr>
-
-    <% @all_trademarks.each do |trademark| %>
-      <tr>
-        <td><%= trademark.user.user_name %></td>
-        <td><%= trademark.id %></td>
-        <td><%= trademark.tm_name %></td>
-        <td><%= trademark.description %></td>
-        <% if trademark.state != nil %>
-          <td><%= trademark.state.status_investigation %></td>
-          <td><%= trademark.state.status_apply %></td>
-          <td><%= trademark.state.status_judge %></td>
-          <td><%= trademark.state.status_registration %></td>
-        <% end %>
-        <td><%= link_to "詳細確認", trademark_path(trademark.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

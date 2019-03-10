@@ -6,7 +6,7 @@
   line-height: 30px;
   text-align: center;
   text-decoration: none;
-  width: 100px;
+  width: 150px;
   display: inline-block;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
@@ -17,6 +17,7 @@
       text-decoration: none;
       font-size: 12px;
     }
+
 // new.html.erb分はほとんどusers.scssに記載
 .new_acct .admin_title {
   color: #720202;
@@ -59,3 +60,180 @@
     .new_acct .loginform .loginbtn2 .btn:hover{
       cursor: pointer;
     }
+
+
+// show.html.erb
+.contact_show {
+  margin-bottom: 50px;
+}
+
+.contact_show .welcome{
+  text-align: right;
+}
+
+.contact_show .titles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  font-size: 14px;
+}
+
+    .contact_show .titles .tm {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      background-color: #333;
+      color: #fff;
+      font-weight: bold;
+      line-height: 3;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .contact_show .titles .invest {
+      grid-column: 3/4;
+      grid-row: 1/2;
+      background-color: #ddd;
+      font-weight: bold;
+      line-height: 3;
+      vertical-align: middle;
+      text-align: center;
+      border-right: 1px solid #fff;
+    }
+
+    .contact_show .titles .apply {
+      grid-column: 4/5;
+      grid-row: 1/2;
+      background-color: #ddd;
+      font-weight: bold;
+      line-height: 3;
+      vertical-align: middle;
+      text-align: center;
+      border-right: 1px solid #fff;
+    }
+
+    .contact_show .titles .judge {
+      grid-column: 5/6;
+      grid-row: 1/2;
+      background-color: #ddd;
+      font-weight: bold;
+      line-height: 3;
+      vertical-align: middle;
+      text-align: center;
+      border-right: 1px solid #fff;
+    }
+
+    .contact_show .titles .register {
+      grid-column: 6/7;
+      grid-row: 1/2;
+      background-color: #ddd;
+      font-weight: bold;
+      line-height: 3;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+
+.contact_show .tmcontents {
+  border: 1px solid #ddd;
+  margin: 0;
+}
+
+    .contact_show .tmcontents .contactsum{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      font-size: 13px;
+      padding: 10px 0 0 0;
+    }
+
+    .contactsum .edit {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      border-right: 1px solid #e8e8e8;
+      height: 50px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+      line-height: 50px;
+      vertical-align: middle;
+    }
+
+        .contactsum .edit a{
+          color: #c94345;
+          text-decoration: none;
+        }
+
+            .contactsum .edit a:hover{
+              text-decoration: underline;
+            }
+
+
+        .contactsum .tm {
+          grid-column: 2/3;
+          grid-row: 1/2;
+          border-right: 1px solid #e8e8e8;
+          height: 50px;
+          text-align: center;
+          font-weight: bold;
+          color: #333;
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+        .contactsum .invest {
+          grid-column: 3/4;
+          grid-row: 1/2;
+          border-right: 1px solid #e8e8e8;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+        .contactsum .apply {
+          grid-column: 4/5;
+          grid-row: 1/2;
+          border-right: 1px solid #e8e8e8;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+        .contactsum .judge {
+          grid-column: 5/6;
+          grid-row: 1/2;
+          border-right: 1px solid #e8e8e8;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+        .contactsum .register {
+          grid-column: 6/7;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+            .contactsum .on_the_proccess{
+              background-color: #ddd;
+              height: 40px;
+              padding-top: 10px;
+            }
+
+            .contactsum .on_the_proccess i{
+              font-size: 20px;
+              height: 20px;
+              line-height: 2;
+              margin: 0;
+              color: #333;
+            }
+
+            .contactsum .on_the_proccess p{
+              font-size: 13px;
+              line-height: 2;
+              margin: 0;
+            }
