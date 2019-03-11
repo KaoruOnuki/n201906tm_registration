@@ -1,5 +1,5 @@
 <% if session[:user_id].present? %>
-<h2>商標詳細ページ</h2>
+  <h2>商標詳細ページ</h2>
   <div class="admin_tmshow">
     <div class="heading">
       <div class="titles_user">
@@ -14,7 +14,7 @@
   </div>
 
 <% elsif session[:admin_user_id].present? %>
-商標作成日：<%= @trademark.created_at.strftime('%Y/%m/%d') %>
+  商標作成日：<%= @trademark.created_at.strftime('%Y/%m/%d') %>
   <div class="admin_tmshow">
     <div class="heading">
       <div class="titles">
@@ -45,32 +45,33 @@
           </div>
           <div class="invest">
             <% if @trademark.state.present? && @trademark.state.status_investigation == true %>
-            <div class="on_the_proccess">
-              <p><i class="fa fa-check"></i></p>
-            </div>
+              <div class="on_the_proccess">
+                <p><i class="fa fa-check"></i></p>
+              </div>
+            <% end %>
           </div>
 
           <div class="apply">
-            <% if @trademark.state.present? && @trademark.state.status_apply == true %>
-            <div class="on_the_proccess">
-              <p><i class="fa fa-check"></i></p>
-            </div>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true %>
+              <div class="on_the_proccess">
+                <p><i class="fa fa-check"></i></p>
+              </div>
             <% end %>
           </div>
 
           <div class="judge">
-            <% if @trademark.state.present? &&  @trademark.state.status_judge == true %>
-            <div class="on_the_proccess">
-              <p><i class="fa fa-check"></i></p>
-            </div>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true && @trademark.state.status_judge == true %>
+              <div class="on_the_proccess">
+                <p><i class="fa fa-check"></i></p>
+              </div>
             <% end %>
           </div>
 
           <div class="register">
-            <% if @trademark.state.present? &&  @trademark.state.status_registration == true %>
-            <div class="on_the_proccess">
-              <p><i class="fa fa-check"></i></p>
-            </div>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true && @trademark.state.status_judge == true && @trademark.state.status_registration == true %>
+              <div class="on_the_proccess">
+                <p><i class="fa fa-check"></i></p>
+              </div>
             <% end %>
           </div>
         </div>
@@ -91,20 +92,20 @@
           </div>
 
           <div class="apply">
-            <% if @trademark.state.present? && @trademark.state.status_apply == true %>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true %>
               <p>出願番号：<%= @trademark.apply_number %></p>
               <p>出願日：<%= @trademark.apply_date %></p>
             <% end %>
           </div>
 
           <div class="judge">
-            <% if @trademark.state.present? &&  @trademark.state.status_judge == true %>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true && @trademark.state.status_judge == true %>
               <p>審査状況：<%= @trademark.judge_status %></p>
             <% end %>
           </div>
 
           <div class="register">
-            <% if @trademark.state.present? &&  @trademark.state.status_registration == true %>
+            <% if @trademark.state.present? && @trademark.state.status_investigation == true && @trademark.state.status_apply == true && @trademark.state.status_judge == true && @trademark.state.status_registration == true %>
               <p>登録番号：<%= @trademark.registration_number %></p>
               <p>登録日：<%= @trademark.registration_date %></p>
               <p>維持期間：<%= @trademark.maintenance_period %>年</p>
@@ -122,5 +123,4 @@
       </div>
     </div>
   </div>
-<% end %>
 <% end %>

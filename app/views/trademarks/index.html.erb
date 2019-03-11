@@ -25,6 +25,9 @@
             <p><i class="fa fa-check"></i></p>
             <p>
               <%= link_to "お申込み詳細▶︎", contact_path(trademark.id)%>
+              <% if trademark.investigation_date.present? %>
+                <p>調査日：<%= trademark.investigation_date %></p>
+              <% end %>
             </p>
           </div>
           <% else %>
@@ -36,7 +39,7 @@
         </div>
 
         <div class="apply">
-          <% if trademark.state.present? && trademark.state.status_apply == true %>
+          <% if trademark.state.present? && trademark.state.status_investigation == true  && trademark.state.status_apply == true %>
           <div class="on_the_proccess">
             <p><i class="fa fa-check"></i></p>
             <% if trademark.apply_number.present? %>
@@ -50,7 +53,7 @@
         </div>
 
         <div class="judge">
-          <% if trademark.state.present? && trademark.state.status_judge == true %>
+          <% if trademark.state.present? && trademark.state.status_investigation == true  && trademark.state.status_apply == true && trademark.state.status_judge == true %>
           <div class="on_the_proccess">
             <p><i class="fa fa-check"></i></p>
             <% if trademark.judge_status.present? %>
@@ -61,7 +64,7 @@
         </div>
 
         <div class="register">
-          <% if trademark.state.present? && trademark.state.status_registration == true %>
+          <% if trademark.state.present? && trademark.state.status_investigation == true  && trademark.state.status_apply == true && trademark.state.status_judge == true && trademark.state.status_registration == true %>
           <div class="on_the_proccess">
             <p><i class="fa fa-check"></i></p>
             <% if trademark.registration_number.present? %>
@@ -76,16 +79,16 @@
       </div>
 
       <div class="tmdetails">
-        <% if trademark.state.present? && trademark.apply_number.present? %>
+        <% if trademark.state.present? && trademark.state.status_apply == true && trademark.apply_number.present? %>
           <div><p>出願番号：<%= trademark.apply_number %></p></div>
         <% end %>
-        <% if trademark.state.present? && trademark.registration_number.present? %>
+        <% if trademark.state.present? && trademark.state.status_registration == true && trademark.registration_number.present? %>
           <div><p>登録番号：<%= trademark.registration_number %></p></div>
         <% end %>
-        <% if trademark.state.present? && trademark.apply_date.present? %>
+        <% if trademark.state.present? && trademark.state.status_apply == true && trademark.apply_date.present? %>
           <div><p>出願日：<%= trademark.apply_date %></p></div>
         <% end %>
-        <% if trademark.state.present? && trademark.registration_date.present? %>
+        <% if trademark.state.present? && trademark.state.status_registration == true && trademark.registration_date.present? %>
           <div><p>登録日：<%= trademark.registration_date %></p></div>
         <% end %>
         <div class="edittm"><%= link_to "詳細編集", edit_trademark_path(trademark.id) %></div>

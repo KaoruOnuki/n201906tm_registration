@@ -1,6 +1,8 @@
 class TrademarksController < ApplicationController
   before_action :set_trademark, only:[:show, :destroy]
-  before_action :your_page, only:[:index, :new, :show, :destroy]
+  before_action :logged_in_user, only:[:index]
+  before_action :your_page_as_a_user, only:[:new]
+  before_action :your_page, only:[:edit, :show, :destroy]
 
   def index
     @trademarks = current_user.trademarks.all
@@ -50,8 +52,21 @@ class TrademarksController < ApplicationController
     @trademark = Trademark.find(params[:id])
   end
 
-  def your_page
+  def logged_in_user
     unless logged_in?
+      redirect_to new_session_path
+    end
+  end
+
+  def your_page
+    @trademark = Trademark.find(params[:id])
+    unless logged_in? && session[:user_id].present? && @trademark.user_id == current_user.id || session[:admin_user_id].present?
+      redirect_to new_session_path
+    end
+  end
+
+  def your_page_as_a_user
+    unless logged_in_as_a_user?
       redirect_to new_session_path
     end
   end
