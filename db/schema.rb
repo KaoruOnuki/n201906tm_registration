@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_09_060001) do
+ActiveRecord::Schema.define(version: 2019_03_11_034855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,17 +25,17 @@ ActiveRecord::Schema.define(version: 2019_03_09_060001) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "phone_number", null: false
+    t.string "name"
+    t.string "phone_number"
     t.string "email"
     t.string "company_name"
     t.string "website"
-    t.text "content", null: false
+    t.text "content"
     t.boolean "preferred_contact"
     t.string "contact_time"
     t.boolean "experienced"
-    t.boolean "agreed_regulation", null: false
-    t.boolean "used", null: false
+    t.boolean "agreed_regulation"
+    t.boolean "used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 2019_03_09_060001) do
     t.text "description", null: false
     t.text "investigation_result"
     t.date "investigation_date"
-    t.integer "apply_number"
+    t.string "apply_number"
     t.date "apply_date"
     t.text "judge_status"
-    t.integer "registration_number"
+    t.string "registration_number"
     t.date "registration_date"
     t.integer "maintenance_period"
     t.bigint "user_id"
