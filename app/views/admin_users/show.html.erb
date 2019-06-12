@@ -6,48 +6,45 @@
   <h2>商標管理画面</h2>
 
   <div class="titles">
-    <div class="tm">商標</div>
-    <div class="invest">調査</div>
-    <div class="apply">出願</div>
-    <div class="judge">審査</div>
-    <div class="register">登録</div>
+    <div class="tm">商標名</div>
+    <div class="invest">ユーザー名</div>
+    <div class="apply">ステータス</div>
+    <div class="judge">アクション</div>
+    <div class="register">編集ボタン</div>
   </div>
 
   <% @all_trademarks.each do |trademark| %>
     <div class="tmcontents">
       <div class="contactsum">
-        <div class="edit"><%= link_to "編集", trademark_path(trademark.id) %></div>
-        <div class="tm"><%= trademark.tm_name %></div>
+        <div class="tm">
+          <%= trademark.tm_name %>
+        </div>
+
         <div class="invest">
-          <% if trademark.state.present? && trademark.state.status_investigation == true %>
-          <div class="on_the_proccess">
-            <p><i class="fa fa-check"></i></p>
-          </div>
-          <% end %>
+          <%= trademark.user.user_name %>さん
         </div>
 
         <div class="apply">
-          <% if trademark.state.present? && trademark.state.status_apply == true %>
           <div class="on_the_proccess">
-            <p><i class="fa fa-check"></i></p>
+            <% if trademark.state.present? && trademark.state.status_registration == true %>
+              <p>登録</p>
+            <% elsif trademark.state.present? && trademark.state.status_judge == true %>
+              <p>審査</p>
+            <% elsif trademark.state.present? && trademark.state.status_apply == true %>
+              <p>出願</p>
+            <% elsif trademark.state.present? && trademark.state.status_investigation == true %>
+              <p>調査</p>
+            <% end %>
           </div>
-          <% end %>
         </div>
 
         <div class="judge">
-          <% if trademark.state.present? && trademark.state.status_judge == true %>
-          <div class="on_the_proccess">
-            <p><i class="fa fa-check"></i></p>
-          </div>
-          <% end %>
+          アクション名
         </div>
 
+
         <div class="register">
-          <% if trademark.state.present? && trademark.state.status_registration == true %>
-          <div class="on_the_proccess">
-            <p><i class="fa fa-check"></i></p>
-          </div>
-          <% end %>
+          <%= link_to "編集", trademark_path(trademark.id) %>
         </div>
       </div>
     </div>
