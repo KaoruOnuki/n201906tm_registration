@@ -90,15 +90,20 @@
             <%= form.number_field :registration_number, min: 1, class: :form_text %>
           </div>
 
-          <div class="content">
+          <div class="content expirationDateCalc">
             <%= form.label "登録日", class: :form_label %>
             <%= form.date_field :registration_date, class: :form_text %>
           </div>
 
-          <div class="content">
+          <div class="content expirationDateCalc">
             <%= form.label "維持期間", class: :form_label %>
             <a class="form_text"><%= form.select :maintenance_period, [["", nil], ["10年", 10], ["5年", 5]] %></a>
           </div>
+          <div class="content">
+            <div class="form_label">満了日</div>
+            <div id="expiration_date"></div>
+          </div>
+
         </div>
       </div>
 
