@@ -20,7 +20,7 @@ namespace :deploy do
       with rails_env: fetch(:rails_env) do
         within current_path do
           sql = "CREATE DATABASE IF NOT EXISTS n201906tm_registration_production;"
-          execute "mysql --user=root --password=root -e '#{sql}'"
+          execute "mysql --user=root --password=nextyleDB83! -e '#{sql}'"
         end
       end
     end
