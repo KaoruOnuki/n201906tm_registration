@@ -79,7 +79,14 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: n201906tm_registration_production
-  username: tm_registration
-  password: <%= ENV['TM_REGISTRATION_DATABASE_PASSWORD'] %>
+  # <<: *default
+  # database: n201906tm_registration_production
+  # username: tm_registration
+  # password: <%= ENV['TM_REGISTRATION_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  database: ipkato_app_production
+  username: root
+  password: nextyleDB83!
+  socket: /var/lib/mysql/mysql.sock
