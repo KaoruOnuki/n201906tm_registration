@@ -86,7 +86,7 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  database: ipkato_app_production
+  database: n201906tm_registration_production
   username: root
   password: nextyleDB83!
   socket: /var/lib/mysql/mysql.sock
