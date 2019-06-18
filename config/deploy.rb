@@ -1,4 +1,4 @@
-lock "~> 3.10.1"
+lock "~> 3.11.0"
 set :application, 'tm_registration'
 set :repo_url, 'git@github.com:KaoruOnuki/n201906tm_registration.git'
 set :branch, 'master'
